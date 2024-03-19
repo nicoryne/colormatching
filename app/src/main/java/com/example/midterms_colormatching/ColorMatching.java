@@ -89,7 +89,7 @@ public class ColorMatching extends AppCompatActivity {
                     colorCounter = 0;
                 }
 
-
+                changeCellColor(index);
                 if((index + 1) % 3 != 0) {
                     changeCellColor(right);
                 }
@@ -119,12 +119,11 @@ public class ColorMatching extends AppCompatActivity {
 
     private boolean checkAllCellsMatchingColor() {
         int firstColor = gameState[0];
-        for(int i = 0; i < gameState.length; i++) {
+        for(int i = 1; i < gameState.length; i++) {
             if (gameState[i] != firstColor) {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -145,6 +144,5 @@ public class ColorMatching extends AppCompatActivity {
             button.setEnabled(true);
             button.setBackgroundColor(colorArrayList.get(randInt).toArgb());
         }
-
     }
 }
