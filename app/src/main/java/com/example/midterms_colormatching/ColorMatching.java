@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class ColorMatching extends AppCompatActivity {
@@ -84,42 +83,40 @@ public class ColorMatching extends AppCompatActivity {
                 int right = index + 1;
                 int up = index - 3;
                 int down = index + 3;
-
-                if(colorCounter > 2) {
-                    colorCounter = 0;
+                if (left >= 0 && left % 3 != 2) {
+                    toggleState(left);
                 }
-
-                if((index + 1) % 3 != 0) {
-                    changeCellColor(right);
+                if (right < 9 && right % 3 != 0) {
+                    toggleState(right);
                 }
-                if(index % 3 != 0) {
-                    changeCellColor(left);
+                if (up >= 0) {
+                    toggleState(up);
                 }
-                changeCellColor(up);
-                changeCellColor(down);
-
+                if (down < 9) {
+                    toggleState(down);
+                }
                 colorCounter++;
-
-                if(checkAllCellsMatchingColor()) {
+                if (checkAllCellsMatchingColor()) {
                     endGame();
                 }
+
             });
         }
-
         btnReturn.setOnClickListener(v -> restartGame());
     }
 
-    private void changeCellColor(int index) {
-        if(index >= 0 && index <= 8) {
-            gameState[index] = colorCounter;
-            buttonArrayList.get(index).setBackgroundColor(colorArrayList.get(colorCounter).toArgb());
+    private void toggleState(int index) {
+        if (index >= 0 && index <= 8) {
+            gameState[index] = (gameState[index] + 1) % 3;
+            buttonArrayList.get(index).setBackgroundColor(colorArrayList.get(gameState[index]).toArgb());
         }
     }
 
+
     private boolean checkAllCellsMatchingColor() {
-        int firstColor = gameState[0];
-        for(int i = 0; i < gameState.length; i++) {
-            if (gameState[i] != firstColor) {
+        int first = gameState[0];
+        for (int i = 0; i < gameState.length; i++) {
+            if (gameState[i] != first) {
                 return false;
             }
         }
@@ -135,13 +132,13 @@ public class ColorMatching extends AppCompatActivity {
 
     private void restartGame(){
         Random rand = new Random();
-        colorCounter = 0;
-        Arrays.fill(gameState, 3);
 
+        int index = 0;
         for(Button button: buttonArrayList) {
             int randInt = rand.nextInt(3);
             button.setEnabled(true);
             button.setBackgroundColor(colorArrayList.get(randInt).toArgb());
+            gameState[index++] = randInt;
         }
     }
 }
