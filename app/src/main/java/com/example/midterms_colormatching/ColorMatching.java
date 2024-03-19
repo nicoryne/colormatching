@@ -107,9 +107,7 @@ public class ColorMatching extends AppCompatActivity {
             });
         }
 
-        btnReturn.setOnClickListener(v -> {
-            restartGame();
-        });
+        btnReturn.setOnClickListener(v -> restartGame());
     }
 
     private void changeCellColor(int index) {
