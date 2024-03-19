@@ -1,6 +1,5 @@
 package com.example.midterms_colormatching;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
@@ -23,24 +22,15 @@ public class ColorMatching extends AppCompatActivity {
     Button btn7;
     Button btn8;
     Button btn9;
-
     Button btnReturn;
-
     ArrayList<Button> buttonArrayList = new ArrayList<>();
-
     ArrayList<Color> colorArrayList = new ArrayList<>();
-
     int[] gameState = {3, 3, 3, 3, 3, 3, 3, 3, 3};
-
     int colorCounter = 0;
-
-    boolean hasWon = false;
 
     Color c1 = Color.valueOf(0, 255, 0, 100);
     Color c2 = Color.valueOf(255, 0, 0, 100);
     Color c3 = Color.valueOf(0, 0, 255, 100);
-
-    Color defaultColor = Color.valueOf(15, 15, 15, 100);
 
 
     @Override
