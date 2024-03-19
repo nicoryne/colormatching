@@ -89,7 +89,6 @@ public class ColorMatching extends AppCompatActivity {
                     colorCounter = 0;
                 }
 
-                changeCellColor(index);
                 if((index + 1) % 3 != 0) {
                     changeCellColor(right);
                 }
